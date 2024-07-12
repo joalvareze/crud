@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mt-4">{{ noticia.titulo }}</h1>
+<div class="container" style="background-color: white; margin: 10px; border-radius: 5px;">
+    
+    <img src="{{ noticia.imagen.url }}" class="img-fluid" alt="{{ noticia.titulo }}">
+    <p class="mt-3">{{ noticia.cuerpo }}</p>
+    <p><strong>Fecha de Publicación:</strong> {{ noticia.fecha_publicacion }}</p>
+    <p><strong>Visitas:</strong> {{ noticia.visitas }}</p>
+    <a class="btn btn-success mb-4" href="{% url 'noticias_list' %}">Volver</a>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Juego</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1 class="mt-4">Formulario de Juego</h1>
+    <div class="container" style="background-color: white; padding: 10px; margin: 10px; border-radius: 5px; opacity: .9;">
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre del Juego</label>
+                {{ form.nombre }}
+            </div>
+            <div class="form-group">
+                <label for="clasificacion">Clasificación</label>
+                {{ form.clasificacion }}
+            </div>
+            <div class="form-group">
+                <label for="resena">Reseña</label>
+                {{ form.resena }}
+            </div>
+            <div class="form-group">
+                <label for="puntaje_metacritic">Puntaje Metacritic</label>
+                {{ form.puntaje_metacritic }}
+            </div>
+            <div class="form-group">
+                <label for="fecha_lanzamiento">Fecha de Lanzamiento</label>
+                {{ form.fecha_lanzamiento }}
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                {{ form.imagen }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

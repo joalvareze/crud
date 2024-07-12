@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+      /* Estilos personalizados para la barra de navegación */
+      .navbar {
+        background-color: #343a40; /* Color de fondo */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+      }
+
+      .navbar-brand {
+        font-family: 'Orbitron', sans-serif; /* Fuente personalizada */
+        font-size: 1.5rem; /* Tamaño de fuente */
+      }
+
+      .nav-link {
+        color: #ffffff !important; /* Color del texto */
+        transition: color 0.3s ease-in-out; /* Transición suave */
+      }
+
+      .nav-link:hover {
+        color: #ffc107 !important; /* Cambio de color al pasar el ratón */
+      }
+
+      /* Animación para el icono de los ojos */
+      .parpadeo {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+      }
+
+      .parpadeo img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .ojos-cerrados {
+        opacity: 0;
+      }
+
+      /* Estilo para el nombre "GAMELOCKED" al lado derecho */
+      .game-locked {
+        color: #ffc107; /* Color del texto */
+        font-weight: bold; /* Negrita */
+        margin-left: 10px; /* Espacio entre la imagen y el texto */
+        line-height: 50px; /* Alinear verticalmente con la imagen */
+      }
+    </style>
+
+    <title>{% block title %}Game Locked{% endblock %}</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'noticias_list' %}">
+              <div class="parpadeo">
+                  <img src="{% static 'img/gengar.jpg' %}" alt="Ojos Abiertos" class="ojos-abiertos" />
+                  <img src="{% static 'img/gengar_cerado.png' %}" alt="Ojos Cerrados" class="ojos-cerrados" />
+              </div>
+              <span class="game-locked">GAMELOCKED</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'noticias_list' %}">Noticias</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'games_list' %}">Juegos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'agregar_game' %}">Nuevo Juego</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'agregar_noticia' %}">Nueva Noticia</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'noticias_list_crud' %}">Gestión de Noticias</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'gestion_games' %}">Gestión de Juegos</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                  <li>
+                      <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                          {% csrf_token %}
+                          <button type="submit" class="nav-link btn btn-link">Cerrar sesión</button>
+                      </form>
+                  </li>
+                  <li>
+                      <a class="nav-link">{{ user.username }}</a>
+                  </li>
+                  {% else %}
+                  <li>
+                      <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                  </li>
+                  <li>
+                    <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+
+                  </li>
+                  {% endif %}
+              </ul>
+          </div>
+      </div>
+  </nav>
+      <main>{% block content %}{% endblock %}</main>
+    </div>
+
+    <!-- Agrego los scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const ojosAbiertos = document.querySelector(".ojos-abiertos");
+      const ojosCerrados = document.querySelector(".ojos-cerrados");
+
+      setInterval(() => {
+        if (
+          ojosAbiertos.style.opacity === "1" ||
+          ojosAbiertos.style.opacity === ""
+        ) {
+          ojosAbiertos.style.opacity = "0";
+          ojosCerrados.style.opacity = "1";
+        } else {
+          ojosAbiertos.style.opacity = "1";
+          ojosCerrados.style.opacity = "0";
+        }
+      }, 700); // Cambia el intervalo a tu gusto (500ms = 0.5s)
+    </script>
+  </body>
+</html>

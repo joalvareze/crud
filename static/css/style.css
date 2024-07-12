@@ -1,0 +1,94 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap");
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes fanimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.parpadeo {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.parpadeo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.ojos-cerrados {
+  opacity: 0;
+}
+
+h1 {
+   color: rgb(255, 255, 255);
+    
+}
+
+.navbar-brand .parpadeo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+.table {
+    background-color: white;
+    opacity: .9;
+    text-align: center;
+}
+
+/* Estilos para la imagen de fondo */
+body {
+    background-image: url('../img/background-web.jpg');
+    background-size: cover;
+    background-position: center;
+   
+    margin: 0; /* Elimina el margen predeterminado */
+   
+  }
+  
+  .container {
+    
+    margin: auto; /* Centra el contenido horizontalmente */
+    padding: 20px; /* Espaciado interior */
+   
+    
+  }

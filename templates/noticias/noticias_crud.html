@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Gestionar Noticias</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Fecha de Publicación</th>
+                <th>Visitas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for noticia in noticias %}
+            <tr>
+                <td>{{ noticia.titulo }}</td>
+                <td>{{ noticia.fecha_publicacion }}</td>
+                <td>{{ noticia.visitas }}</td>
+                <td>
+                    <a href="{% url 'noticia_detail' noticia.id %}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{% url 'editar_noticia' noticia.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'eliminar_noticia' noticia.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar la noticia: {{ noticia.titulo }}?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

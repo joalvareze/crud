@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ game.nombre }} - Detalles del Juego</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .game-header {
+            
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .game-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .game-details {
+            margin-top: 20px;
+        }
+        .game-info {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+        }
+        .game-description {
+            font-size: 1.1em;
+            color: #666;
+            display: -webkit-box;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 4.5em;
+        }
+        .metascore {
+            background-color: green;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-header">
+        <h1>{{ game.nombre }}</h1>
+    </div>
+    
+    <div class="container game-details">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <img src="{{ game.imagen.url }}" alt="{{ game.nombre }}" class="game-image">
+            </div>
+            <div class="col-md-8 game-info">
+                <h2>Detalles del Juego</h2>
+                <p><strong>Clasificación:</strong> {{ game.get_clasificacion_display }}</p>
+                <p><strong>Fecha de Lanzamiento:</strong> {{ game.fecha_lanzamiento|date:"d/m/Y" }}</p>
+                <p><strong>Puntaje Metacritic:</strong> <span class="metascore">{{ game.puntaje_metacritic }} Metascore</span></p>
+                <hr>
+                <h3>Reseña</h3>
+                <p class="game-description">{{ game.resena }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center back-button">
+            <a href="{% url 'games_list' %}" class="btn btn-primary">Volver a la lista de juegos</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock %}

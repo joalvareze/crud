@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Últimas Noticias</h1>
+    <div class="row mx-auto">
+        {% for noticia in noticias %}
+        <div class="col-8 mb-4">
+            <div class="card" style="height: 400px;">
+                <div class="d-flex justify-content-center" style="height: 200px; padding: 10px;">
+                    {% if noticia.imagen %}
+                    <img src="{{ noticia.imagen.url }}" alt="{{ noticia.titulo }}" style="width: auto; height: 200px;">
+                    {% endif %}
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    <p class="card-text" style="max-height: 100px;">{{ noticia.resena }}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'noticia_detail' noticia.id %}" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>  
+{% endblock %}

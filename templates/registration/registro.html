@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+      <title>Registro de usuario</title>
+</head>
+<body>
+    {% load crispy_forms_tags %}
+    <br><br><br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>registro de usuario</h2>
+                        <hr>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <a href="{% url 'noticias_list' %}">Ir al home</a>
+                            <a href="{% url 'login' %}">Iniciar sesion</a>
+                            <input type="submit" value="registrar" class="btn btn-success float-right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agrega aquí el formulario para cerrar sesión -->
+    <form method="POST" action="{% url 'logout' %}" style="display:none;" id="logout-form">
+        {% csrf_token %}
+    </form>
+</body>
+</html>
